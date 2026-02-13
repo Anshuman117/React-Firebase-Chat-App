@@ -3,7 +3,7 @@ import search from "../../../assets/search.png";
 import plus from "../../../assets/plus.png";
 import minus from "../../../assets/minus.png";
 import avatar from "../../../assets/avatar.png";
-import AddUser from "./addUser/addUser";
+import AddUser from "./addUser/AddUser";
 import { useUserStore } from "../../../lib/userStore";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
