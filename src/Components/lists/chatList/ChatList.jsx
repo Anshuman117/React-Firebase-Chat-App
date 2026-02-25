@@ -63,34 +63,26 @@ const ChatList = () => {
     }
   };
 
-  const filteredChats=chats.filter(c=>c.user.username.toLowerCase().includes(input.toLowerCase()))
+  const filteredChats = chats.filter((c) =>
+    c.user?.username?.toLowerCase().includes(input.toLowerCase())
+  );
 
   return (
-    <div className="flex-1 overflow-scroll">
-      <div className="flex items-center gap-[30px] p-[20px]">
-        <div
-          className="flex bg-[rgba(17,25,40,0.5)] rounded-full
-  "
-        >
-          <img src={search} alt="" className="w-[20px] h-[20px] p-0.5" />
-          <input onChange={(e)=>setInput(e.target.value)}
+    <div className="relative flex-1 overflow-y-auto">
+      <div className="flex items-center gap-3 p-4">
+        <div className="flex flex-1 items-center gap-2 rounded-xl border border-white/10 bg-slate-900/45 px-3 py-2">
+          <img src={search} alt="" className="h-4 w-4 opacity-75" />
+          <input
+            onChange={(e) => setInput(e.target.value)}
             type="text"
             placeholder="Search"
-            className="
-    bg-transparent
-    border-none
-    outline-none
-    focus:outline-none
-    focus:ring-0
-    text-white
-    placeholder-gray-400
-  "
+            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-400"
           />
         </div>
         <img
           src={addMode ? minus : plus}
           alt=""
-          className="w-[20px] h-[20px] bg-[rgba(17,25,40,0.5)] rounded-xl p-0 hover  cursor-pointer"
+          className="h-9 w-9 cursor-pointer rounded-xl border border-white/15 bg-slate-900/45 p-2 transition hover:bg-slate-800/70"
           onClick={() => setaddMode((prev) => !prev)}
         />
       </div>
@@ -98,28 +90,26 @@ const ChatList = () => {
         <div
           onClick={() => handleSelect(chat)}
           key={chat.chatsId || `${chat.receiverId}-${chat.updatedAt}`}
-          style={{ backgroundColor: chat?.isSeen ? "transparent" : "#5183fe" }}
-          className=" flex items-center gap-[20px] p-[20px] cursor-pointer border-b-[1px] border-b-[#dddddd35] "
+          className={`flex cursor-pointer items-center gap-3 border-b border-white/10 px-4 py-3 transition hover:bg-slate-800/45 ${
+            chat?.isSeen ? "bg-transparent" : "bg-cyan-500/25"
+          }`}
         >
           <img
-            src={ chat.user.blocked.includes(currentUser.id)?{avatar}:chat.user.avatar || avatar}
+            src={chat.user.blocked.includes(currentUser.id) ? avatar : chat.user.avatar || avatar}
             alt=""
-            className="w-[50px] h-[50px]  object-cover rounded-full "
+            className="h-[46px] w-[46px] rounded-full border border-white/20 object-cover"
           />
-          <div className="flex flex-col gap-[10px]">
-            <span className="font-medium">
+          <div className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-semibold text-slate-100">
               {chat.user.blocked.includes(currentUser.id)
                 ? "user"
                 : chat.user.username}
             </span>
-            <p className="font-[14px] font-light">
+            <p className="truncate text-xs text-slate-300">
               {chat.user.blocked.includes(currentUser.id)
                 ? "you are blocked"
                 : chat.lastMessage}
             </p>
-            
-            
-            
           </div>
         </div>
       ))}

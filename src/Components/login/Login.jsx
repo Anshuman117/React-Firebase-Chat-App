@@ -5,7 +5,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { auth, db } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { uploadToCloudinary } from "../../lib/upload";
-import { use } from "react";
 
 const Login = () => {
   const [Avatar, setAvatar] = useState({
@@ -13,7 +12,8 @@ const Login = () => {
     url: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
 
   const handleAvatar = (e) => {
     if (e.target.files[0]) {
@@ -26,13 +26,14 @@ const Login = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setRegisterLoading(true);
 
     const formData = new FormData(e.target);
     const { username, email, password } = Object.fromEntries(formData);
 
     if (!username || !email || !password || !Avatar.file) {
       toast.error("All fields including avatar are required");
+      setRegisterLoading(false);
       return;
     }
 
@@ -62,20 +63,20 @@ const Login = () => {
       console.error(err);
       toast.error(err.message);
     } finally {
-      setLoading(false);
+      setRegisterLoading(false);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoginLoading(true);
   
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
   
     if (!email || !password) {
       toast.error("Email and password are required");
-      setLoading(false);
+      setLoginLoading(false);
       return;
     }
   
@@ -86,95 +87,93 @@ const Login = () => {
       console.log(err);
       toast.error(err.message);
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
   
 
   return (
-    <div className="Login w-full h-full flex items-center gap-24">
-      <div className="item flex-1 flex flex-col gap-[20px] items-center">
-        <h2 className="text-2xl">Welcome Back,</h2>
+    <div className="Login grid h-full w-full grid-cols-1 gap-4 overflow-y-auto p-4 md:grid-cols-2 md:items-center md:gap-0 md:p-8 lg:p-12">
+      <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
+        <h2 className="text-2xl font-bold">Welcome Back</h2>
+        <p className="text-sm text-slate-300">Sign in to continue your conversations.</p>
         <form
-          className="flex flex-col items-center gap-[20px]"
+          className="flex w-full max-w-sm flex-col items-center gap-4"
           onSubmit={handleLogin}
         >
           <input
-            className="p-[20px] border-none outline-none bg-[rgba(17,25,40,0.6)] text-white border-r-[5px] rounded-lg"
+            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
             type="text"
             placeholder="Email"
             name="email"
           />
           <input
-            className=" rounded-lg p-[20px] border-none outline-none bg-[rgba(17,25,40,0.6)] text-white border-r-[5px]"
+            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
             type="password"
-            placeholder="password"
+            placeholder="Password"
             name="password"
           />
           <button
-            disabled={loading}
-            className="w-[100%] p-[20px] bg-[#1f8ef1] text-white rounded-[5px] cursor-pointer font-medium disabled:cursor-not-allowed disabled:bg-[#1f8ff19c]
-"
+            disabled={loginLoading}
+            className="w-full rounded-xl bg-cyan-500 px-4 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:bg-cyan-700/70 disabled:text-slate-200"
           >
-            {loading ? "Loading" : "Sign In"}
+            {loginLoading ? "Loading..." : "Sign In"}
           </button>
         </form>
       </div>
 
-      <div className="seperator h-[80%] w-[2px] bg-[#dddddd35]"></div>
-
-      <div className="item flex-1 flex flex-col gap-[20px] items-center">
-        <h2 className="text-2xl">Create an Account</h2>
+      <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
+        <h2 className="text-2xl font-bold">Create an Account</h2>
+        <p className="text-sm text-slate-300">Set up your profile and join the chat.</p>
         <form
           onSubmit={handleRegister}
-          className="flex flex-col items-center gap-[20px]"
+          className="flex w-full max-w-sm flex-col items-center gap-4"
         >
           <label
-            className="w-[100%] flex items-center justify-between cursor-pointer underline"
+            className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-dashed border-cyan-200/40 bg-slate-900/40 p-3 text-sm text-cyan-100"
             htmlFor="file"
           >
             <img
-              className="w-[50px] h-[50px] rounded-[10px] object-fit opacity-[0.6]"
+              className="h-[48px] w-[48px] rounded-xl object-cover"
               src={Avatar.url || avatar}
               alt=""
             />
-            upload an image
+            Upload a profile image
           </label>
 
           <input
             type="file"
             id="file"
-            style={{ display: "none " }}
+            style={{ display: "none" }}
             onChange={handleAvatar}
           />
 
           <input
-            className="rounded-lg p-[20px] border-none outline-none bg-[rgba(17,25,40,0.6)] text-white border-r-[5px]"
+            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
             type="text"
             placeholder="Username"
             name="username"
           />
 
           <input
-            className="rounded-lg p-[20px] border-none outline-none bg-[rgba(17,25,40,0.6)] text-white border-r-[5px]"
+            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
             type="text"
             placeholder="Email"
             name="email"
           />
 
           <input
-            className="rounded-lg p-[20px] border-none outline-none bg-[rgba(17,25,40,0.6)] text-white border-r-[5px]"
+            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
             type="password"
-            placeholder="password"
+            placeholder="Password"
             name="password"
           />
 
           <button
-            disabled={loading}
-            className="w-[100%] p-[20px] bg-[#1f8ef1] text-white rounded-[5px] cursor-pointer font-medium disabled:cursor-not-allowed disabled:bg-[#1f8ff19c]
-"
+            disabled={registerLoading}
+            className="w-full rounded-xl bg-sky-600 px-4 py-3 font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-sky-700/60"
           >
-            {loading ? "Loading" : "Sign In"}
+            {registerLoading ? "Loading..." : "Create Account"}
           </button>
         </form>
       </div>

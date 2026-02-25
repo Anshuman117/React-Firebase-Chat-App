@@ -18,7 +18,6 @@ const Detail = () => {
   } = usechatStore();
 
   const { currentUser } = useUserStore();
-  console.log(currentUser)
 
   const handleBlock = async () => {
     if (!user) return;
@@ -54,24 +53,24 @@ const Detail = () => {
   };
   
   return (
-    <div className="details flex-1">
-      <div className="user flex flex-col items-center gap-[15px] px-[20px] py-[30px] border-b border-[#dddddd35] ">
+    <div className="details h-full overflow-y-auto bg-slate-900/20">
+      <div className="user flex flex-col items-center gap-3 border-b border-white/15 px-5 py-7">
         <img
-          src={user?.avatar||avatar}
+          src={user?.avatar || avatar}
           alt=""
-          className="w-[100px] h-[100px] object-cover rounded-full "
+          className="h-[92px] w-[92px] rounded-full border border-white/20 object-cover"
         />
-        <h2>{user?.username}</h2>
-        <p>Lorem ipsum dolor sit amet consectetur</p>
+        <h2 className="text-lg font-semibold">{user?.username}</h2>
+        <p className="text-center text-xs text-slate-300">Manage this conversation and privacy settings.</p>
       </div>
-      <div className="info p-[20px] flex flex-col gap-[10px] ">
+      <div className="info flex flex-col gap-3 p-5">
         <div className="options">
           <div className="title flex items-center justify-between">
             <span>Chat Setting</span>
             <img
               src={arrowUp}
               alt=""
-              className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
             />
           </div>
         </div>
@@ -81,7 +80,7 @@ const Detail = () => {
             <img
               src={arrowUp}
               alt=""
-              className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
             />
           </div>
         </div>
@@ -91,7 +90,7 @@ const Detail = () => {
             <img
               src={arrowUp}
               alt=""
-              className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
             />
           </div>
         </div>
@@ -101,86 +100,86 @@ const Detail = () => {
             <img
               src={arrowDown}
               alt=""
-              className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
             />
           </div>
 
-          <div className="photo flex flex-col gap-[20px] mt-5">
+          <div className="photo mt-4 flex flex-col gap-3">
             <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-[20px]">
+              <div className="photoDetail flex items-center gap-3">
                 <img
-                  className="w-[40px] h-[40px] object-cover rounded-md"
+                  className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-[14px] text-gray-300 font-light">
+                <span className="text-xs font-light text-gray-300">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
               />
             </div>
             <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-[20px]">
+              <div className="photoDetail flex items-center gap-3">
                 <img
-                  className="w-[40px] h-[40px] object-cover rounded-md"
+                  className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-[14px] text-gray-300 font-light">
+                <span className="text-xs font-light text-gray-300">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
               />
             </div>
             <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-[20px]">
+              <div className="photoDetail flex items-center gap-3">
                 <img
-                  className="w-[40px] h-[40px] object-cover rounded-md"
+                  className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-[14px] text-gray-300 font-light">
+                <span className="text-xs font-light text-gray-300">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
               />
             </div>
             <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-[20px]">
+              <div className="photoDetail flex items-center gap-3">
                 <img
-                  className="w-[40px] h-[40px] object-cover rounded-md"
+                  className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-[14px] text-gray-300 font-light">
+                <span className="text-xs font-light text-gray-300">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
               />
             </div>
           </div>
         </div>
-        <div className="options mt-">
+        <div className="options">
           <div className="title flex items-center justify-between">
             <span>Shared Files</span>
             <img
-              className="w-[30px] h-[30px] p-[10px]  bg-[rgba(17,25,40,0.3)] cursor-pointer rounded-md"
+              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
               src={arrowUp}
               alt=""
             />
@@ -189,12 +188,12 @@ const Detail = () => {
 
         <button
           onClick={handleBlock}
-          className="p-[10px] bg-[rgba(230,74,105,0.553)] text-white border-0 rounded-[5px] hover:bg-[rgba(220,20,60,0.796)] cursor-pointer"
+          className="mt-3 cursor-pointer rounded-lg border-0 bg-rose-500/80 p-2.5 text-sm font-semibold text-white transition hover:bg-rose-500"
         >
-          {isCurrentUserBlocked ? "you are blocked":isReceiverBlocked?"User Blocked":"Block User"}
+          {isCurrentUserBlocked ? "You are blocked" : isReceiverBlocked ? "User Blocked" : "Block User"}
         </button>
         <button
-          className="p-[5px] rounded-[5px] bg-[#1a73e8] cursor-pointer hover:bg-[#1a5fe8]"
+          className="cursor-pointer rounded-lg bg-sky-600 p-2 text-sm font-semibold transition hover:bg-sky-500"
           onClick={() => auth.signOut()}
         >
           Logout

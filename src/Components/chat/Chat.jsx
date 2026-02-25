@@ -33,9 +33,10 @@ const Chat = () => {
   const { chatsId, user, isCurrentUserBlocked, isReceiverBlocked } =
     usechatStore();
   const endRef = useRef(null);
+
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+  }, [chat?.messages?.length, image.url]);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", chatsId), (res) => {
@@ -47,10 +48,7 @@ const Chat = () => {
     };
   }, [chatsId]);
 
-  console.log(chat);
-
   const handleEmoji = (e) => {
-    console.log(e);
     settext((prev) => prev + e.emoji);
     setopen(false);
   };
@@ -115,46 +113,56 @@ const Chat = () => {
   };
 
   return (
-    <div className=" flex-2 flex flex-col h-full">
-      <div className=" top p-[20px] flex items-center justify-between border-b border-white/20">
-        <div className="flex items-center gap-[20px]">
+    <div className="flex h-full w-full flex-col">
+      <div className="top flex items-center justify-between border-b border-white/15 px-4 py-4">
+        <div className="flex items-center gap-3">
           <img
             src={user?.avatar || avatar}
             alt=""
-            className="w-[60px] h-[60px]  object-cover rounded-full"
+            className="h-12 w-12 rounded-full border border-white/20 object-cover"
           />
-          <div className="flex flex-col gap-[5px]">
-            <span className="text-[18px] font-bold">{user?.username}</span>
-            <p className="text-[14px] font-light  text-[#a5a5a5]">
-              Lorem ipsum dolor sit amet{" "}
-            </p>
+          <div className="flex flex-col">
+            <span className="text-base font-bold">{user?.username}</span>
+            <p className="text-xs text-slate-300">Active conversation</p>
           </div>
         </div>
-        <div className="flex gap-[20px] ">
-          <img src={phone} alt="" className=" w-[20px]" />
-          <img src={video} alt="" className="w-[20px]" />
-          <img src={info} alt="" className="w-[20px]" />
+        <div className="flex gap-4">
+          <img src={phone} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
+          <img src={video} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
+          <img src={info} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
         </div>
       </div>
-      <div className="center flex flex-col overflow-y-auto gap-[20px] p-4">
+      <div className="center flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-5">
         {chat?.messages?.map((message, index) => (
           <div
-            className={`message own flex ${
+            key={`${message.senderId}-${message.createdAt?.seconds || message.createdAt || index}`}
+            className={`message flex ${
               message.senderId === currentUser?.id
                 ? "justify-end"
                 : "justify-start"
             }`}
           >
-            {" "}
-            {message.img && <img src={message.img} alt="" />}
-            <div className="texts max-w-[70%] text-right">
+            <div className={`texts max-w-[72%] ${message.senderId === currentUser?.id ? "text-right" : "text-left"}`}>
+              {message.img && (
+                <img
+                  src={message.img}
+                  alt=""
+                  className="mb-2 max-h-[220px] w-full rounded-xl border border-white/15 object-cover"
+                />
+              )}
               {message.text && (
-                <p className="bg-[#5183fe] text-white p-2 rounded-lg">
+                <p
+                  className={`rounded-2xl px-4 py-2 text-sm ${
+                    message.senderId === currentUser?.id
+                      ? "bg-cyan-500 text-slate-950"
+                      : "bg-slate-800/80 text-slate-100"
+                  }`}
+                >
                   {message.text}
                 </p>
               )}
 
-              <span className="text-xs text-gray-400">
+              <span className="mt-1 block text-[11px] text-slate-400">
                 {message.createdAt
                   ? new Date(
                       message.createdAt.seconds
@@ -168,78 +176,68 @@ const Chat = () => {
         ))}
 
         {image.url && (
-          <div className="message own">
+          <div className="message flex justify-end">
             <div className="texts">
-              <img src={image.url} alt="" />
+              <img
+                src={image.url}
+                alt=""
+                className="max-h-[220px] rounded-xl border border-cyan-300/40 object-cover"
+              />
             </div>
           </div>
         )}
         <div ref={endRef}></div>
       </div>
-      <div className=" bottom p-[20px] flex items-center justify-between border-t border-[#dddddd35] mt-auto">
-        <div className="icons flex gap-[20px] ">
-          <label htmlFor="file">
+      <div className="bottom mt-auto flex items-center gap-3 border-t border-white/15 px-4 py-3">
+        <div className="icons flex gap-3">
+          <label htmlFor="chat-file">
             <img
               src={img}
               alt=""
-              className="w-[20px] h-[20px] cursor-pointer"
+              className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
             />
           </label>
           <input
             type="file"
-            id="file"
+            id="chat-file"
             style={{ display: "none" }}
             onChange={handleImg}
           />
           <img
             src={camera}
             alt=""
-            className="w-[20px] h-[20px] cursor-pointer"
+            className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
           />
-          <img src={mic} alt="" className="w-[20px] h-[20px] cursor-pointer" />
+          <img src={mic} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
         </div>
         <input
           type="text"
-          placeholder={ (isCurrentUserBlocked || isReceiverBlocked)?"you cannot send a message":"type a message"}
-          className="
-    flex-1 
-    bg-[rgba(17,25,40,0.5)] 
-    border-none 
-    outline-none 
-    text-white 
-    p-[20px] 
-    text-[16px] 
-    rounded-xl 
-    disabled:cursor-not-allowed 
-    disabled:opacity-50
-  "
+          placeholder={isCurrentUserBlocked || isReceiverBlocked ? "You cannot send a message" : "Type a message"}
+          className="flex-1 rounded-xl border border-white/15 bg-slate-900/65 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300/50 disabled:cursor-not-allowed disabled:opacity-50"
           value={text}
           onChange={(e) => settext(e.target.value)}
           disabled={isCurrentUserBlocked || isReceiverBlocked}
         />
 
-        <div className=" flex items-center ml-2 gap-2">
-          <div className="relative ">
+        <div className="flex items-center gap-2">
+          <div className="relative">
             <img
               src={emoji}
               alt=""
-              className="w-[20px] h-[20px] cursor-pointer "
+              className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
               onClick={() => setopen((prev) => !prev)}
             />
-            <div className=" absolute bottom-[50px] left-0">
+            <div className="absolute bottom-[38px] right-0 z-20">
               <EmojiPicker open={open} onEmojiClick={handleEmoji} />
             </div>
           </div>
-          <div className="">
-            <button
-              onClick={handleSend}
-              disabled={isCurrentUserBlocked || isReceiverBlocked}
-              className="bg-[#5183fe] text-white pr-[10px] pl-[10px] border-none cursor-pointer rounded-[5px]  disabled:bg-[#5182feb4]
-    disabled:cursor-not-allowed"
-            >
-              Send
-            </button>
-          </div>
+          <button
+            onClick={handleSend}
+            disabled={isCurrentUserBlocked || isReceiverBlocked}
+            className="cursor-pointer rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:bg-cyan-800/70 disabled:text-slate-300"
+          >
+            Send
+          </button>
         </div>
       </div>
     </div>

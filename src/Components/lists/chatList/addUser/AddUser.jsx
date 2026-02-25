@@ -14,10 +14,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
 import { useUserStore } from "../../../../lib/userStore";
+
 const AddUser = () => {
   const [user, SetUser] = useState(null);
 
-const {currentUser}= useUserStore()
+  const { currentUser } = useUserStore();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -72,31 +73,31 @@ const {currentUser}= useUserStore()
   };
 
   return (
-    <div className="AddUser p-[30px] bg-[rgba(17,25,40,0.79)] rounded-lg absolute top-0 bottom-0 left-0 right-0 m-auto w-max h-max">
-      <form onSubmit={handleSearch} className="flex gap-[20px]">
+    <div className="AddUser absolute inset-0 z-20 m-auto h-max w-[92%] max-w-md rounded-2xl border border-white/20 bg-slate-900/95 p-6 shadow-2xl backdrop-blur-xl">
+      <form onSubmit={handleSearch} className="flex gap-3">
         <input
-          className="p-[20px] rounded-[10px] border-none outline-none"
+          className="flex-1 rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-white outline-none focus:border-cyan-300/50"
           type="text"
-          placeholder="username"
+          placeholder="Username"
           name="username"
         />
-        <button className="p-[20px] rounded-[10px] bg-[#1a73e8] text-white border-none cursor-pointer">
+        <button className="cursor-pointer rounded-xl bg-cyan-500 px-4 py-3 font-semibold text-slate-900 transition hover:bg-cyan-400">
           Search
         </button>
       </form>
       {user && (
-        <div className="user mt-[50px] flex items-center justify-between">
-          <div className="detail flex items-center gap-[20px]">
+        <div className="user mt-6 flex items-center justify-between rounded-xl border border-white/10 bg-slate-800/60 px-3 py-3">
+          <div className="detail flex items-center gap-3">
             <img
-              className="w-[50px] h-[50px] rounded-[50%] object-cover"
+              className="h-10 w-10 rounded-full border border-white/25 object-cover"
               src={user.avatar || avatar}
               alt=""
             />
-            <span>{user.username}</span>
+            <span className="text-sm font-semibold text-slate-100">{user.username}</span>
           </div>
           <button
             onClick={handleAdd}
-            className="p-[10px] rounded-[10px] bg-[#1a73e8] text-white border-none cursor-pointer"
+            className="cursor-pointer rounded-lg bg-sky-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-sky-500"
           >
             Add User
           </button>
