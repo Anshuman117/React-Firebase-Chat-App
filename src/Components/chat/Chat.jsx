@@ -197,13 +197,17 @@ const Chat = ({ onBack }) => {
         )}
         <div ref={endRef}></div>
       </div>
-      <div className="bottom mt-auto flex items-center gap-3 border-t border-white/15 px-4 py-3">
-        <div className="icons flex gap-3">
+      <div
+        className="bottom mt-auto border-t border-white/15 px-3 py-2 sm:px-4 sm:py-3"
+        style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
+      >
+        <div className="flex w-full min-w-0 items-center gap-2 sm:gap-3">
+          <div className="icons flex shrink-0 items-center gap-2 sm:gap-3">
           <label htmlFor="chat-file">
             <img
               src={img}
               alt=""
-              className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
+              className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100 sm:h-[19px] sm:w-[19px]"
             />
           </label>
           <input
@@ -215,38 +219,40 @@ const Chat = ({ onBack }) => {
           <img
             src={camera}
             alt=""
-            className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
+            className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100 sm:h-[19px] sm:w-[19px]"
           />
-          <img src={mic} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
-        </div>
-        <input
-          type="text"
-          placeholder={isCurrentUserBlocked || isReceiverBlocked ? "You cannot send a message" : "Type a message"}
-          className="flex-1 rounded-xl border border-white/15 bg-slate-900/65 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300/50 disabled:cursor-not-allowed disabled:opacity-50"
-          value={text}
-          onChange={(e) => settext(e.target.value)}
-          disabled={isCurrentUserBlocked || isReceiverBlocked}
-        />
-
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <img
-              src={emoji}
-              alt=""
-              className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100"
-              onClick={() => setopen((prev) => !prev)}
-            />
-            <div className="absolute bottom-[38px] right-0 z-20">
-              <EmojiPicker open={open} onEmojiClick={handleEmoji} />
-            </div>
+          <img src={mic} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100 sm:h-[19px] sm:w-[19px]" />
           </div>
-          <button
-            onClick={handleSend}
+
+          <input
+            type="text"
+            placeholder={isCurrentUserBlocked || isReceiverBlocked ? "You cannot send a message" : "Type a message"}
+            className="min-w-0 flex-1 rounded-xl border border-white/15 bg-slate-900/65 px-3 py-2.5 text-sm text-white outline-none transition focus:border-cyan-300/50 sm:px-4 sm:py-3 disabled:cursor-not-allowed disabled:opacity-50"
+            value={text}
+            onChange={(e) => settext(e.target.value)}
             disabled={isCurrentUserBlocked || isReceiverBlocked}
-            className="cursor-pointer rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:bg-cyan-800/70 disabled:text-slate-300"
-          >
-            Send
-          </button>
+          />
+
+          <div className="flex shrink-0 items-center gap-2">
+            <div className="relative">
+              <img
+                src={emoji}
+                alt=""
+                className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100 sm:h-[19px] sm:w-[19px]"
+                onClick={() => setopen((prev) => !prev)}
+              />
+              <div className="absolute bottom-[38px] right-0 z-20">
+                <EmojiPicker open={open} onEmojiClick={handleEmoji} />
+              </div>
+            </div>
+            <button
+              onClick={handleSend}
+              disabled={isCurrentUserBlocked || isReceiverBlocked}
+              className="cursor-pointer rounded-xl bg-cyan-500 px-3 py-2 text-base font-semibold text-slate-950 transition hover:bg-cyan-400 sm:px-5 sm:py-2.5 disabled:cursor-not-allowed disabled:bg-cyan-800/70 disabled:text-slate-300"
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>
