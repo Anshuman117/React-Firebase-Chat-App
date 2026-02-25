@@ -11,12 +11,13 @@ import EmojiPicker from "emoji-picker-react";
 
 import {
   arrayUnion,
+  arrayRemove,
   doc,
   getDoc,
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../lib/firebase";
+import { auth, db } from "../../lib/firebase";
 import { usechatStore } from "../../lib/chatStore";
 import { useUserStore } from "../../lib/userStore";
 import { uploadToCloudinary } from "../../lib/upload";
@@ -29,8 +30,9 @@ const Chat = ({ onBack }) => {
     file: null,
     url: "",
   });
+  const [mobileActionsOpen, setMobileActionsOpen] = useState(false);
   const { currentUser } = useUserStore();
-  const { chatsId, user, isCurrentUserBlocked, isReceiverBlocked } =
+  const { chatsId, user, isCurrentUserBlocked, isReceiverBlocked, changeBlock } =
     usechatStore();
   const endRef = useRef(null);
 
@@ -112,6 +114,37 @@ const Chat = ({ onBack }) => {
     settext("");
   };
 
+  const handleBlock = async () => {
+    if (!user) return;
+
+    const currentUserRef = doc(db, "users", currentUser.id);
+    const receiverRef = doc(db, "users", user.id);
+
+    try {
+      if (isReceiverBlocked) {
+        await updateDoc(currentUserRef, {
+          blocked: arrayRemove(user.id),
+        });
+
+        await updateDoc(receiverRef, {
+          blocked: arrayRemove(currentUser.id),
+        });
+      } else {
+        await updateDoc(currentUserRef, {
+          blocked: arrayUnion(user.id),
+        });
+
+        await updateDoc(receiverRef, {
+          blocked: arrayUnion(currentUser.id),
+        });
+      }
+      changeBlock();
+      setMobileActionsOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex h-full w-full flex-col">
       <div className="top flex items-center justify-between border-b border-white/15 px-4 py-4">
@@ -138,9 +171,34 @@ const Chat = ({ onBack }) => {
         <div className="flex gap-4">
           <img src={phone} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
           <img src={video} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
-          <img src={info} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
+          <img src={info} alt="" className="hidden h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100 md:block" />
+          <button
+            type="button"
+            onClick={() => setMobileActionsOpen((prev) => !prev)}
+            className="md:hidden"
+          >
+            <img src={info} alt="" className="h-[18px] w-[18px] cursor-pointer opacity-80 transition hover:opacity-100" />
+          </button>
         </div>
       </div>
+      {mobileActionsOpen && (
+        <div className="mx-4 mt-3 rounded-xl border border-white/20 bg-slate-900/90 p-3 md:hidden">
+          <button
+            type="button"
+            onClick={handleBlock}
+            className="mb-2 block w-full rounded-lg bg-rose-500/80 px-3 py-2 text-sm font-semibold text-white"
+          >
+            {isCurrentUserBlocked ? "You are blocked" : isReceiverBlocked ? "Unblock User" : "Block User"}
+          </button>
+          <button
+            type="button"
+            onClick={() => auth.signOut()}
+            className="block w-full rounded-lg bg-sky-600 px-3 py-2 text-sm font-semibold text-white"
+          >
+            Logout
+          </button>
+        </div>
+      )}
       <div className="center flex flex-1 flex-col gap-4 overflow-y-auto px-4 py-5">
         {chat?.messages?.map((message, index) => (
           <div
