@@ -12,7 +12,7 @@ import { usechatStore } from "./lib/chatStore";
 
 function App() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
-  const { chatsId } = usechatStore();
+  const { chatsId, clearChat } = usechatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -50,17 +50,25 @@ function App() {
     >
       <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]"></div>
       <div
-        className="relative z-10 flex h-[95vh] w-[96vw] max-w-[1440px] overflow-hidden rounded-3xl border border-white/20 bg-slate-950/45 text-white shadow-[0_32px_90px_rgba(0,0,0,0.45)] backdrop-blur-2xl"
+        className="relative z-10 flex h-[96dvh] w-[96vw] max-w-[1440px] overflow-hidden rounded-3xl border border-white/20 bg-slate-950/45 text-white shadow-[0_32px_90px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:h-[95vh]"
       >
         {currentUser ? (
           <>
-            <div className="w-full min-w-0 border-r border-white/15 md:w-[320px] lg:w-[28%]">
+            <div
+              className={`${
+                chatsId ? "hidden md:block" : "block"
+              } w-full min-w-0 border-r border-white/15 md:w-[320px] lg:w-[28%]`}
+            >
               <List />
             </div>
 
-            <div className={`${chatsId ? "flex" : "hidden md:flex"} min-w-0 flex-1 border-r border-white/15`}>
+            <div
+              className={`${
+                chatsId ? "flex" : "hidden md:flex"
+              } min-w-0 flex-1 border-r border-white/15`}
+            >
               {chatsId ? (
-                <Chat />
+                <Chat onBack={clearChat} />
               ) : (
                 <div className="m-auto max-w-sm rounded-2xl border border-white/15 bg-slate-900/50 px-8 py-10 text-center">
                   <p className="text-lg font-semibold text-slate-100">Choose a chat to start messaging</p>

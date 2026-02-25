@@ -21,7 +21,7 @@ import { usechatStore } from "../../lib/chatStore";
 import { useUserStore } from "../../lib/userStore";
 import { uploadToCloudinary } from "../../lib/upload";
 
-const Chat = () => {
+const Chat = ({ onBack }) => {
   const [chat, setChat] = useState();
   const [open, setopen] = useState(false);
   const [text, settext] = useState("");
@@ -116,6 +116,15 @@ const Chat = () => {
     <div className="flex h-full w-full flex-col">
       <div className="top flex items-center justify-between border-b border-white/15 px-4 py-4">
         <div className="flex items-center gap-3">
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              className="mr-1 rounded-lg border border-white/20 bg-slate-900/50 px-2 py-1 text-sm text-slate-100 md:hidden"
+            >
+              Back
+            </button>
+          )}
           <img
             src={user?.avatar || avatar}
             alt=""
