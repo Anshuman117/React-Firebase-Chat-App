@@ -46,13 +46,13 @@ function App() {
 
   return (
     <div
-      className="relative flex min-h-screen w-screen items-center justify-center bg-cover bg-center p-2 sm:p-4"
+      className="relative flex min-h-screen w-screen items-center justify-center bg-cover bg-center p-0 sm:p-3 md:p-4"
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="absolute inset-0 bg-white/22 backdrop-blur-[2px]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,135,255,0.2),transparent_30%),radial-gradient(circle_at_top_right,rgba(255,211,72,0.24),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04))]"></div>
       <div
-        className="chatbee-shell relative z-10 flex h-[96dvh] w-[96vw] max-w-[1440px] overflow-hidden rounded-[32px] text-slate-800 backdrop-blur-2xl md:h-[95vh]"
+        className="chatbee-shell relative z-10 flex h-screen w-screen overflow-hidden rounded-none text-slate-800 backdrop-blur-2xl sm:h-[96dvh] sm:w-[96vw] sm:max-w-[1440px] sm:rounded-[32px] md:h-[95vh]"
       >
         {currentUser ? (
           <>

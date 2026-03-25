@@ -96,35 +96,35 @@ const Login = () => {
   };
 
   return (
-    <div className="Login flex h-full w-full flex-col justify-center gap-8 overflow-y-auto p-4 md:p-8 lg:p-12">
+    <div className="Login flex h-full w-full flex-col justify-center gap-6 overflow-y-auto px-4 py-6 sm:px-5 sm:py-8 md:gap-8 md:p-8 lg:p-12">
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-0 text-center">
-        <span className="rounded-full border border-white/60 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-[0.35em] text-[#0B58C9] shadow-[0_10px_24px_rgba(74,128,196,0.14)]">
+        <span className="rounded-full border border-white/60 bg-white/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.28em] text-[#0B58C9] shadow-[0_10px_24px_rgba(74,128,196,0.14)] sm:px-4 sm:text-xs sm:tracking-[0.35em]">
           ChatBee
         </span>
 
-        <span className="mt-1 flex w-60 justify-center md:w-72">
+        <span className="mt-1 flex w-48 justify-center sm:w-56 md:w-72">
           <img src={chatbeerm} alt="" className="block w-full drop-shadow-[0_18px_30px_rgba(74,128,196,0.16)]" />
         </span>
 
-        <span className="-mt-8 flex flex-wrap items-center justify-center gap-2">
-          <h1 className="m-0 text-3xl font-extrabold leading-none text-slate-800 md:text-5xl">
+        <span className="-mt-5 flex flex-wrap items-center justify-center gap-1.5 sm:-mt-6 sm:gap-2">
+          <h1 className="m-0 text-2xl font-extrabold leading-none text-slate-800 sm:text-3xl md:text-5xl">
             Welcome To
           </h1>
-          <h1 className="m-0 text-3xl font-extrabold leading-none text-[#0B58C9] md:text-5xl">
+          <h1 className="m-0 text-2xl font-extrabold leading-none text-[#0B58C9] sm:text-3xl md:text-5xl">
             Chat
           </h1>
-          <h1 className="m-0 text-3xl font-extrabold leading-none text-[#F4C20D] md:text-5xl">
+          <h1 className="m-0 text-2xl font-extrabold leading-none text-[#F4C20D] sm:text-3xl md:text-5xl">
             Bee
           </h1>
         </span>
 
-        <p className="mt-3 max-w-2xl text-sm md:text-base chatbee-soft-text">
+        <p className="mt-2 max-w-xl px-2 text-sm chatbee-soft-text sm:mt-3 md:max-w-2xl md:text-base">
           Jump back into your chats or create a new account to get started.
         </p>
       </div>
 
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-stretch gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6">
-        <div className="chatbee-panel-blue item flex flex-col items-center gap-5 rounded-[28px] p-6 md:p-8">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-stretch gap-4 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-6">
+        <div className="chatbee-panel-blue item flex flex-col items-center gap-4 rounded-[24px] p-5 sm:gap-5 sm:rounded-[28px] sm:p-6 md:p-8">
           <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#0B58C9]">
             Returning User
           </span>
@@ -133,7 +133,7 @@ const Login = () => {
             Sign in to continue your conversations.
           </p>
           <form
-            className="flex w-full max-w-sm flex-col items-center gap-4"
+            className="flex w-full max-w-sm flex-col items-center gap-3 sm:gap-4"
             onSubmit={handleLogin}
           >
             <input
@@ -158,11 +158,11 @@ const Login = () => {
         </div>
 
         <div
-          className="mx-auto h-px w-24 rounded-full bg-gradient-to-r from-[#67AFFF]/0 via-[#67AFFF] to-[#FFD55C]/0 md:h-48 md:w-px md:bg-gradient-to-b"
+          className="mx-auto h-px w-24 rounded-full bg-gradient-to-r from-[#67AFFF]/0 via-[#67AFFF] to-[#FFD55C]/0 lg:h-48 lg:w-px lg:bg-gradient-to-b"
           aria-hidden="true"
         />
 
-        <div className="chatbee-panel-yellow item flex flex-col items-center gap-5 rounded-[28px] p-6 md:p-8">
+        <div className="chatbee-panel-yellow item flex flex-col items-center gap-4 rounded-[24px] p-5 sm:gap-5 sm:rounded-[28px] sm:p-6 md:p-8">
           <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#B88500]">
             New Here
           </span>
@@ -172,7 +172,7 @@ const Login = () => {
           </p>
           <form
             onSubmit={handleRegister}
-            className="flex w-full max-w-sm flex-col items-center gap-4"
+            className="flex w-full max-w-sm flex-col items-center gap-3 sm:gap-4"
           >
             <label
               className="flex w-full cursor-pointer items-center justify-between rounded-2xl border border-dashed border-[#F0C955] bg-white/75 p-3 text-sm font-medium text-slate-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]"

@@ -147,13 +147,13 @@ const Chat = ({ onBack }) => {
 
   return (
     <div className="flex h-full w-full flex-col bg-[linear-gradient(180deg,rgba(255,255,255,0.38),rgba(240,247,255,0.2))]">
-      <div className="top flex items-center justify-between border-b border-white/40 bg-white/34 px-4 py-4 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
+      <div className="top flex items-center justify-between gap-3 border-b border-white/40 bg-white/34 px-3 py-3 backdrop-blur-sm sm:px-4 sm:py-4">
+        <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           {onBack && (
             <button
               type="button"
               onClick={onBack}
-              className="mr-1 rounded-full border border-white/80 bg-white/80 px-3 py-1.5 text-sm font-medium text-slate-700 shadow-[0_10px_20px_rgba(96,130,181,0.12)] md:hidden"
+              className="shrink-0 rounded-full border border-white/80 bg-white/80 px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-[0_10px_20px_rgba(96,130,181,0.12)] sm:px-3 sm:text-sm md:hidden"
             >
               Back
             </button>
@@ -163,12 +163,12 @@ const Chat = ({ onBack }) => {
             alt=""
             className="h-12 w-12 rounded-full border border-white/90 object-cover shadow-[0_10px_24px_rgba(84,126,191,0.14)]"
           />
-          <div className="flex flex-col">
-            <span className="text-base font-bold text-slate-800">{user?.username}</span>
+          <div className="min-w-0 flex flex-col">
+            <span className="truncate text-sm font-bold text-slate-800 sm:text-base">{user?.username}</span>
             <p className="text-xs chatbee-soft-text">Active conversation</p>
           </div>
         </div>
-        <div className="flex gap-2 sm:gap-3">
+        <div className="flex shrink-0 gap-2 sm:gap-3">
           <button type="button" className="hidden h-10 w-10 items-center justify-center rounded-full border border-[#0B2A5B] bg-[#0B2A5B] shadow-[0_10px_22px_rgba(94,127,177,0.12)] transition hover:-translate-y-0.5 sm:flex">
             <img src={phone} alt="" className="h-[18px] w-[18px] opacity-80 transition hover:opacity-100" />
           </button>
@@ -188,7 +188,7 @@ const Chat = ({ onBack }) => {
         </div>
       </div>
       {mobileActionsOpen && (
-        <div className="chatbee-panel mx-4 mt-3 rounded-2xl p-3 md:hidden">
+        <div className="chatbee-panel mx-3 mt-3 rounded-2xl p-3 sm:mx-4 md:hidden">
           <button
             type="button"
             onClick={handleBlock}
@@ -205,7 +205,7 @@ const Chat = ({ onBack }) => {
           </button>
         </div>
       )}
-      <div className="center flex flex-1 flex-col gap-4 overflow-y-auto bg-[radial-gradient(circle_at_top_right,rgba(255,214,84,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(101,172,255,0.18),transparent_28%)] px-4 py-5 md:px-6">
+      <div className="center flex flex-1 flex-col gap-3 overflow-y-auto bg-[radial-gradient(circle_at_top_right,rgba(255,214,84,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(101,172,255,0.18),transparent_28%)] px-3 py-4 sm:gap-4 sm:px-4 sm:py-5 md:px-6">
         {chat?.messages?.map((message, index) => (
           <div
             key={`${message.senderId}-${message.createdAt?.seconds || message.createdAt || index}`}
@@ -215,7 +215,7 @@ const Chat = ({ onBack }) => {
                 : "justify-start"
             }`}
           >
-            <div className={`texts max-w-[72%] ${message.senderId === currentUser?.id ? "text-right" : "text-left"}`}>
+            <div className={`texts max-w-[86%] sm:max-w-[78%] lg:max-w-[72%] ${message.senderId === currentUser?.id ? "text-right" : "text-left"}`}>
               {message.img && (
                 <img
                   src={message.img}
@@ -265,8 +265,8 @@ const Chat = ({ onBack }) => {
         className="bottom mt-auto border-t border-white/45 bg-white/36 px-3 py-2 backdrop-blur-sm sm:px-4 sm:py-3"
         style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
       >
-        <div className="flex w-full min-w-0 items-center gap-2 sm:gap-3">
-          <div className="icons flex shrink-0 items-center gap-2 sm:gap-3">
+        <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-3">
+          <div className="icons order-2 flex shrink-0 items-center gap-2 sm:order-1 sm:gap-3">
           <label htmlFor="chat-file" className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[#0B2A5B] bg-[#0B2A5B] shadow-[0_10px_22px_rgba(94,127,177,0.12)] transition hover:-translate-y-0.5">
             <img
               src={img}
@@ -295,13 +295,13 @@ const Chat = ({ onBack }) => {
           <input
             type="text"
             placeholder={isCurrentUserBlocked || isReceiverBlocked ? "You cannot send a message" : "Type a message"}
-            className="chatbee-input min-w-0 flex-1 rounded-2xl px-3 py-2.5 text-sm outline-none transition sm:px-4 sm:py-3 disabled:cursor-not-allowed disabled:opacity-50"
+            className="chatbee-input order-1 min-w-0 basis-full rounded-2xl px-3 py-2.5 text-sm outline-none transition sm:order-2 sm:basis-auto sm:flex-1 sm:px-4 sm:py-3 disabled:cursor-not-allowed disabled:opacity-50"
             value={text}
             onChange={(e) => settext(e.target.value)}
             disabled={isCurrentUserBlocked || isReceiverBlocked}
           />
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="order-3 ml-auto flex shrink-0 items-center gap-2">
             <div className="relative">
               <button
                 type="button"
@@ -314,7 +314,7 @@ const Chat = ({ onBack }) => {
                   className="h-[18px] w-[18px] opacity-80 transition hover:opacity-100 sm:h-[19px] sm:w-[19px]"
                 />
               </button>
-              <div className="absolute bottom-[46px] right-0 z-20">
+              <div className="absolute bottom-[46px] right-0 z-20 scale-[0.9] origin-bottom-right sm:scale-100">
                 <EmojiPicker open={open} onEmojiClick={handleEmoji} />
               </div>
             </div>
