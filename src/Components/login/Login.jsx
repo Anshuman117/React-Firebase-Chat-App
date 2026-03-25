@@ -93,89 +93,106 @@ const Login = () => {
   
 
   return (
-    <div className="Login grid h-full w-full grid-cols-1 gap-4 overflow-y-auto p-4 md:grid-cols-2 md:items-center md:gap-0 md:p-8 lg:p-12">
-      <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
-        <h2 className="text-2xl font-bold">Welcome Back</h2>
-        <p className="text-sm text-slate-300">Sign in to continue your conversations.</p>
-        <form
-          className="flex w-full max-w-sm flex-col items-center gap-4"
-          onSubmit={handleLogin}
-        >
-          <input
-            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-            type="text"
-            placeholder="Email"
-            name="email"
-          />
-          <input
-            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-            type="password"
-            placeholder="Password"
-            name="password"
-          />
-          <button
-            disabled={loginLoading}
-            className="w-full rounded-xl bg-cyan-500 px-4 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:bg-cyan-700/70 disabled:text-slate-200"
-          >
-            {loginLoading ? "Loading..." : "Sign In"}
-          </button>
-        </form>
+    <div className="Login flex h-full w-full flex-col justify-center gap-6 overflow-y-auto p-4 md:p-8 lg:p-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 text-center">
+        <span className="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/80">
+          ChatBee
+        </span>
+        <h1 className="text-3xl font-extrabold text-white md:text-4xl">Welcome to ChatBee</h1>
+        <p className="text-sm text-slate-300 md:text-base">
+          Jump back into your chats or create a new account to get started.
+        </p>
       </div>
 
-      <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
-        <h2 className="text-2xl font-bold">Create an Account</h2>
-        <p className="text-sm text-slate-300">Set up your profile and join the chat.</p>
-        <form
-          onSubmit={handleRegister}
-          className="flex w-full max-w-sm flex-col items-center gap-4"
-        >
-          <label
-            className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-dashed border-cyan-200/40 bg-slate-900/40 p-3 text-sm text-cyan-100"
-            htmlFor="file"
+      <div className="grid w-full grid-cols-1 items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-6">
+        <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
+          <h2 className="text-2xl font-bold">Welcome Back</h2>
+          <p className="text-sm text-slate-300">Sign in to continue your conversations.</p>
+          <form
+            className="flex w-full max-w-sm flex-col items-center gap-4"
+            onSubmit={handleLogin}
           >
-            <img
-              className="h-[48px] w-[48px] rounded-xl object-cover"
-              src={Avatar.url || avatar}
-              alt=""
+            <input
+              className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
+              type="text"
+              placeholder="Email"
+              name="email"
             />
-            Upload a profile image
-          </label>
+            <input
+              className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+            <button
+              disabled={loginLoading}
+              className="w-full rounded-xl bg-cyan-500 px-4 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:bg-cyan-700/70 disabled:text-slate-200"
+            >
+              {loginLoading ? "Loading..." : "Sign In"}
+            </button>
+          </form>
+        </div>
 
-          <input
-            type="file"
-            id="file"
-            style={{ display: "none" }}
-            onChange={handleAvatar}
-          />
+        <div
+          className="mx-auto h-px w-24 rounded-full bg-white/15 md:h-48 md:w-px"
+          aria-hidden="true"
+        />
 
-          <input
-            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-            type="text"
-            placeholder="Username"
-            name="username"
-          />
-
-          <input
-            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-            type="text"
-            placeholder="Email"
-            name="email"
-          />
-
-          <input
-            className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
-            type="password"
-            placeholder="Password"
-            name="password"
-          />
-
-          <button
-            disabled={registerLoading}
-            className="w-full rounded-xl bg-sky-600 px-4 py-3 font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-sky-700/60"
+        <div className="item flex flex-col items-center gap-5 rounded-2xl border border-white/10 bg-slate-900/35 p-6 md:p-8">
+          <h2 className="text-2xl font-bold">Create an Account</h2>
+          <p className="text-sm text-slate-300">Set up your profile and join the chat.</p>
+          <form
+            onSubmit={handleRegister}
+            className="flex w-full max-w-sm flex-col items-center gap-4"
           >
-            {registerLoading ? "Loading..." : "Create Account"}
-          </button>
-        </form>
+            <label
+              className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-dashed border-cyan-200/40 bg-slate-900/40 p-3 text-sm text-cyan-100"
+              htmlFor="file"
+            >
+              <img
+                className="h-[48px] w-[48px] rounded-xl object-cover"
+                src={Avatar.url || avatar}
+                alt=""
+              />
+              Upload a profile image
+            </label>
+
+            <input
+              type="file"
+              id="file"
+              style={{ display: "none" }}
+              onChange={handleAvatar}
+            />
+
+            <input
+              className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
+              type="text"
+              placeholder="Username"
+              name="username"
+            />
+
+            <input
+              className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
+              type="text"
+              placeholder="Email"
+              name="email"
+            />
+
+            <input
+              className="w-full rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-white outline-none transition focus:border-cyan-300/50"
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+
+            <button
+              disabled={registerLoading}
+              className="w-full rounded-xl bg-sky-600 px-4 py-3 font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-sky-700/60"
+            >
+              {registerLoading ? "Loading..." : "Create Account"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
