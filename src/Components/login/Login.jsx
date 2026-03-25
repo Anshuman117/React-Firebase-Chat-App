@@ -95,10 +95,10 @@ const Login = () => {
   return (
     <div className="Login flex h-full w-full flex-col justify-center gap-6 overflow-y-auto p-4 md:p-8 lg:p-12">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.45em] text-cyan-200/80">
+        <span className="text-3xl font-semibold uppercase tracking-[0.45em] text-cyan-200/80">
           ChatBee
         </span>
-        <h1 className="text-3xl font-extrabold text-white md:text-4xl">Welcome to ChatBee</h1>
+        <h1 className="text-l font-extrabold text-white md:text-4xl">Welcome to ChatBee</h1>
         <p className="text-sm text-slate-300 md:text-base">
           Jump back into your chats or create a new account to get started.
         </p>
