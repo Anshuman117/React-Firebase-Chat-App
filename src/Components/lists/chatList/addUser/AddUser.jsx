@@ -4,7 +4,6 @@ import {
   arrayUnion,
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -73,31 +72,31 @@ const AddUser = () => {
   };
 
   return (
-    <div className="AddUser absolute inset-0 z-20 m-auto h-max w-[92%] max-w-md rounded-2xl border border-white/20 bg-slate-900/95 p-6 shadow-2xl backdrop-blur-xl">
+    <div className="AddUser chatbee-panel absolute inset-0 z-20 m-auto h-max w-[92%] max-w-md rounded-[28px] p-6 backdrop-blur-xl">
       <form onSubmit={handleSearch} className="flex gap-3">
         <input
-          className="flex-1 rounded-xl border border-white/20 bg-slate-900/70 px-4 py-3 text-white outline-none focus:border-cyan-300/50"
+          className="chatbee-input flex-1 rounded-2xl px-4 py-3 outline-none"
           type="text"
           placeholder="Username"
           name="username"
         />
-        <button className="cursor-pointer rounded-xl bg-cyan-500 px-4 py-3 font-semibold text-slate-900 transition hover:bg-cyan-400">
+        <button className="chatbee-primary-btn cursor-pointer rounded-2xl px-4 py-3 font-semibold transition">
           Search
         </button>
       </form>
       {user && (
-        <div className="user mt-6 flex items-center justify-between rounded-xl border border-white/10 bg-slate-800/60 px-3 py-3">
+        <div className="user mt-6 flex items-center justify-between rounded-2xl border border-white/70 bg-white/72 px-3 py-3 shadow-[0_12px_24px_rgba(103,137,186,0.12)]">
           <div className="detail flex items-center gap-3">
             <img
-              className="h-10 w-10 rounded-full border border-white/25 object-cover"
+              className="h-10 w-10 rounded-full border border-white/90 object-cover"
               src={user.avatar || avatar}
               alt=""
             />
-            <span className="text-sm font-semibold text-slate-100">{user.username}</span>
+            <span className="text-sm font-semibold text-slate-800">{user.username}</span>
           </div>
           <button
             onClick={handleAdd}
-            className="cursor-pointer rounded-lg bg-sky-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-sky-500"
+            className="chatbee-secondary-btn cursor-pointer rounded-xl px-3 py-2 text-sm font-semibold transition"
           >
             Add User
           </button>

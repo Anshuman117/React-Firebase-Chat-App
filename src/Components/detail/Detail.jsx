@@ -53,147 +53,106 @@ const Detail = () => {
   };
   
   return (
-    <div className="details h-full overflow-y-auto bg-slate-900/20">
-      <div className="user flex flex-col items-center gap-3 border-b border-white/15 px-5 py-7">
+    <div className="details h-full overflow-y-auto bg-[linear-gradient(180deg,rgba(255,248,219,0.65),rgba(255,255,255,0.62))]">
+      <div className="user flex flex-col items-center gap-3 border-b border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.48),rgba(255,240,193,0.42))] px-5 py-7">
         <img
           src={user?.avatar || avatar}
           alt=""
-          className="h-[92px] w-[92px] rounded-full border border-white/20 object-cover"
+          className="h-[92px] w-[92px] rounded-full border border-white/90 object-cover shadow-[0_18px_34px_rgba(98,133,181,0.16)]"
         />
-        <h2 className="text-lg font-semibold">{user?.username}</h2>
-        <p className="text-center text-xs text-slate-300">Manage this conversation and privacy settings.</p>
+        <h2 className="text-lg font-semibold text-slate-800">{user?.username}</h2>
+        <p className="text-center text-xs chatbee-soft-text">Manage this conversation and privacy settings.</p>
       </div>
-      <div className="info flex flex-col gap-3 p-5">
-        <div className="options">
+      <div className="info flex flex-col gap-4 p-5">
+        <div className="chatbee-panel options rounded-[24px] p-4">
           <div className="title flex items-center justify-between">
-            <span>Chat Setting</span>
+            <span className="font-semibold text-slate-800">Chat Settings</span>
             <img
               src={arrowUp}
               alt=""
-              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+              className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-[#0B2A5B] bg-[#0B2A5B] p-[8px]"
             />
           </div>
         </div>
-        <div className="options">
+        <div className="chatbee-panel options rounded-[24px] p-4">
           <div className="title flex items-center justify-between">
-            <span>Chat Setting</span>
+            <span className="font-semibold text-slate-800">Notifications</span>
             <img
               src={arrowUp}
               alt=""
-              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+              className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-[#0B2A5B] bg-[#0B2A5B] p-[8px]"
             />
           </div>
         </div>
-        <div className="options">
+        <div className="chatbee-panel options rounded-[24px] p-4">
           <div className="title flex items-center justify-between">
-            <span>Privacy % help</span>
+            <span className="font-semibold text-slate-800">Privacy & Help</span>
             <img
               src={arrowUp}
               alt=""
-              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+              className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-[#0B2A5B] bg-[#0B2A5B] p-[8px]"
             />
           </div>
         </div>
-        <div className="options">
+        <div className="chatbee-panel options rounded-[24px] p-4">
           <div className="title flex items-center justify-between">
-            <span>Shared photos</span>
+            <span className="font-semibold text-slate-800">Shared Photos</span>
             <img
               src={arrowDown}
               alt=""
-              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+              className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-white/80 bg-white/80 p-[8px]"
             />
           </div>
 
           <div className="photo mt-4 flex flex-col gap-3">
-            <div className="photoItem flex items-center justify-between">
+            <div className="photoItem flex items-center justify-between rounded-2xl bg-white/72 px-3 py-2 shadow-[0_10px_22px_rgba(94,127,177,0.1)]">
               <div className="photoDetail flex items-center gap-3">
                 <img
                   className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-xs font-light text-gray-300">
+                <span className="text-xs font-light text-slate-500">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+                className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-white/80 bg-white/80 p-[8px]"
               />
             </div>
-            <div className="photoItem flex items-center justify-between">
+            <div className="photoItem flex items-center justify-between rounded-2xl bg-white/72 px-3 py-2 shadow-[0_10px_22px_rgba(94,127,177,0.1)]">
               <div className="photoDetail flex items-center gap-3">
                 <img
                   className="h-[38px] w-[38px] rounded-md object-cover"
                   src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
                   alt=""
                 />
-                <span className="text-xs font-light text-gray-300">
+                <span className="text-xs font-light text-slate-500">
                   Photo_Iova.png
                 </span>
               </div>
               <img
                 src={download}
                 alt=""
-                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
+                className="h-[30px] w-[30px] cursor-pointer rounded-xl border border-white/80 bg-white/80 p-[8px]"
               />
             </div>
-            <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-3">
-                <img
-                  className="h-[38px] w-[38px] rounded-md object-cover"
-                  src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
-                  alt=""
-                />
-                <span className="text-xs font-light text-gray-300">
-                  Photo_Iova.png
-                </span>
-              </div>
-              <img
-                src={download}
-                alt=""
-                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
-              />
-            </div>
-            <div className="photoItem flex items-center justify-between">
-              <div className="photoDetail flex items-center gap-3">
-                <img
-                  className="h-[38px] w-[38px] rounded-md object-cover"
-                  src=" https://upload.wikimedia.org/wikipedia/commons/c/c9/Iowa_City_Downtown_June_2021_%28cropped%29.jpg"
-                  alt=""
-                />
-                <span className="text-xs font-light text-gray-300">
-                  Photo_Iova.png
-                </span>
-              </div>
-              <img
-                src={download}
-                alt=""
-                className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
-              />
-            </div>
+            
+           
           </div>
         </div>
-        <div className="options">
-          <div className="title flex items-center justify-between">
-            <span>Shared Files</span>
-            <img
-              className="h-[30px] w-[30px] cursor-pointer rounded-md border border-white/10 bg-slate-900/50 p-[8px]"
-              src={arrowUp}
-              alt=""
-            />
-          </div>
-        </div>
+        
 
         <button
           onClick={handleBlock}
-          className="mt-3 cursor-pointer rounded-lg border-0 bg-rose-500/80 p-2.5 text-sm font-semibold text-white transition hover:bg-rose-500"
+          className="chatbee-danger-btn mt-3 cursor-pointer rounded-2xl p-2.5 text-sm font-semibold transition"
         >
-          {isCurrentUserBlocked ? "You are blocked" : isReceiverBlocked ? "User Blocked" : "Block User"}
+          {isCurrentUserBlocked ? "You are blocked" : isReceiverBlocked ? "Unblock User" : "Block User"}
         </button>
         <button
-          className="cursor-pointer rounded-lg bg-sky-600 p-2 text-sm font-semibold transition hover:bg-sky-500"
+          className="chatbee-primary-btn cursor-pointer rounded-2xl p-2 text-sm font-semibold transition"
           onClick={() => auth.signOut()}
         >
           Logout

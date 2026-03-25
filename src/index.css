@@ -3,8 +3,16 @@
 
 :root {
   font-family: "Manrope", sans-serif;
-  color: #edf6ff;
-  background-color: #030712;
+  color: #17314d;
+  background-color: #eaf4ff;
+  --chatbee-blue: #2880ff;
+  --chatbee-blue-deep: #0b58c9;
+  --chatbee-yellow: #f4c20d;
+  --chatbee-yellow-soft: #fff1b3;
+  --chatbee-ink: #17314d;
+  --chatbee-muted: #6f84a0;
+  --chatbee-border: rgba(255, 255, 255, 0.72);
+  --chatbee-shadow: 0 30px 80px rgba(69, 105, 153, 0.18);
 }
 
 * {
@@ -19,7 +27,98 @@ body,
 }
 
 body {
-  background: radial-gradient(circle at 10% 10%, #0f2e43 0%, #030712 45%, #041420 100%);
+  background:
+    radial-gradient(circle at top left, rgba(97, 170, 255, 0.6), transparent 32%),
+    radial-gradient(circle at top right, rgba(255, 211, 72, 0.48), transparent 30%),
+    linear-gradient(135deg, #dff0ff 0%, #f3f9ff 44%, #fffdf3 70%, #ffe89a 100%);
+  color: var(--chatbee-ink);
+}
+
+::selection {
+  background: rgba(40, 128, 255, 0.22);
+  color: var(--chatbee-ink);
+}
+
+.chatbee-shell {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.18));
+  border: 1px solid var(--chatbee-border);
+  box-shadow: var(--chatbee-shadow);
+}
+
+.chatbee-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(245, 249, 255, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 45px rgba(93, 122, 164, 0.12);
+}
+
+.chatbee-panel-blue {
+  background: linear-gradient(180deg, rgba(228, 242, 255, 0.92), rgba(255, 255, 255, 0.72));
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 45px rgba(71, 123, 194, 0.14);
+}
+
+.chatbee-panel-yellow {
+  background: linear-gradient(180deg, rgba(255, 247, 204, 0.94), rgba(255, 255, 255, 0.74));
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 45px rgba(199, 164, 72, 0.15);
+}
+
+.chatbee-input {
+  border: 1px solid rgba(121, 161, 214, 0.35);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--chatbee-ink);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.chatbee-input::placeholder {
+  color: #7f92aa;
+}
+
+.chatbee-input:focus {
+  border-color: rgba(40, 128, 255, 0.46);
+  box-shadow: 0 0 0 4px rgba(40, 128, 255, 0.12);
+}
+
+.chatbee-primary-btn {
+  background: linear-gradient(135deg, var(--chatbee-blue-deep), var(--chatbee-blue));
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(40, 128, 255, 0.28);
+}
+
+.chatbee-primary-btn:hover {
+  filter: brightness(1.04);
+}
+
+.chatbee-primary-btn:disabled {
+  background: rgba(59, 130, 246, 0.4);
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.chatbee-secondary-btn {
+  background: linear-gradient(135deg, #f4c20d, #ffd95d);
+  color: #5d4300;
+  box-shadow: 0 14px 28px rgba(244, 194, 13, 0.24);
+}
+
+.chatbee-secondary-btn:hover {
+  filter: brightness(1.03);
+}
+
+.chatbee-secondary-btn:disabled {
+  background: rgba(244, 194, 13, 0.38);
+  box-shadow: none;
+  color: rgba(93, 67, 0, 0.76);
+}
+
+.chatbee-danger-btn {
+  background: linear-gradient(135deg, #ef5b6a, #ff8b6b);
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(239, 91, 106, 0.2);
+}
+
+.chatbee-soft-text {
+  color: var(--chatbee-muted);
 }
 
 ::-webkit-scrollbar {
@@ -32,6 +131,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 170, 204, 0.45);
+  background: rgba(118, 156, 205, 0.45);
   border-radius: 999px;
 }
