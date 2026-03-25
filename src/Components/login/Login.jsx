@@ -106,7 +106,7 @@ const Login = () => {
           <img src={chatbeerm} alt="" className="block w-full drop-shadow-[0_18px_30px_rgba(74,128,196,0.16)]" />
         </span>
 
-        <span className="-mt-4 flex flex-wrap items-center justify-center gap-2">
+        <span className="-mt-8 flex flex-wrap items-center justify-center gap-2">
           <h1 className="m-0 text-3xl font-extrabold leading-none text-slate-800 md:text-5xl">
             Welcome To
           </h1>
