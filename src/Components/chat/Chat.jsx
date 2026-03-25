@@ -181,7 +181,7 @@ const Chat = ({ onBack }) => {
           <button
             type="button"
             onClick={() => setMobileActionsOpen((prev) => !prev)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/80 bg-white/78 shadow-[0_10px_22px_rgba(94,127,177,0.12)] transition hover:-translate-y-0.5 md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0B2A5B] bg-[#0B2A5B] shadow-[0_10px_22px_rgba(94,127,177,0.12)] transition hover:-translate-y-0.5 md:hidden"
           >
             <img src={info} alt="" className="h-[18px] w-[18px] opacity-80 transition hover:opacity-100" />
           </button>
